@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="ossConnectConfig" class="com.pt.modules.oss.pool.OssConnectConfig" >
+		<!--注册服务器-->
+		<property name="endpoint" value="http://oss-cn-shanghai.aliyuncs.com"/>
+		<!--id-->
+		<property name="accessKeyId" value="LTAIEQBjQIGds"/>
+		<!--加密key-->
+		<property name="accessKeySecret" value="Q7aTPXQdsUMkrshpLpGX9V"/>
+		<!--注册工作空间-->
+		<property name="bucketName" value="qz-oss-test"/>
+		<!--最大下载并发数-->
+		<property name="taskNum" value="5"/>
+		<!--分片大小 B-->
+		<property name="partSize" value="1024000"/>
+		<!--开启断点续传-->
+		<property name="enableCheckpoint" value="true"/>
+		<!--临时下载路径  最后须带有斜杠-->
+		<property name="downloadFile" value="d:/下载11/"/>
+
+		<!--=================common pool 配置参数=========================-->
+		<!--最大链接-->
+		<property name="maxTotal" value="10" />
+		<!--最大空闲-->
+		<property name="maxIdle" value="8" />
+		<!--最小空闲-->
+		<property name="minIdle" value="0" />
+		<!--先进先出-->
+		<property name="lifo" value="true" />
+		<!--最大等待 -1 不等待-->
+		<property name="maxWaitMillis" value="-1" />
+		<!--最小销毁空闲时间-->
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<!--对象空闲多久被驱逐  级别高于minEvictableIdleTimeMillis-->
+		<property name="softMinEvictableIdleTimeMillis" value="1800000" />
+		<!--空闲销毁最大数-->
+		<property name="numTestsPerEvictionRun" value="3" />
+		<!--调用时测试-->
+		<property name="testOnBorrow" value="false" />
+		<!--归还时测试-->
+		<property name="testOnReturn" value="false" />
+		<!--空闲时检测是否有效-->
+		<property name="testWhileIdle" value="false" />
+		<!--回收器间隔时间 毫秒-->
+		<property name="timeBetweenEvictionRunsMillis" value="-1" />
+		<!--无链接是否报异常-->
+		<property name="blockWhenExhausted" value="true" />
+		<!--启用jmx-->
+		<property name="jmxEnabled" value="true" />
+		<!--jmx名称前缀-->
+		<property name="jmxNamePrefix" value="pool" />
+	</bean>
+	<!--获取spring上下文-->
+	<bean id="springApplicationContext" class="com.pt.modules.oss.pool.SpringApplicationContext" ></bean>
+
+</beans>
